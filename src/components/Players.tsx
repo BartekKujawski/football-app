@@ -1,5 +1,13 @@
+import { AddPlayer } from './AddPlayer';
+import { PlayersList } from './PlayersList';
+
 const Players = () => {
-    return <div>Players</div>;
+    return (
+        <>
+            <AddPlayer />
+            <PlayersList />
+        </>
+    );
 };
 
 export { Players };

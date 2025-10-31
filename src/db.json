@@ -4,14 +4,14 @@
             "id": "1",
             "name": "Karim",
             "surname": "Adeyemi",
-            "number": "27",
+            "number": 27,
             "teamId": "1"
         },
         {
             "id": "2",
             "name": "Pedri",
             "surname": "Gonzalez",
-            "number": "8",
+            "number": 8,
             "teamId": "2"
         }
     ],
@@ -19,13 +19,13 @@
         {
             "id": "1",
             "name": "Borussia Dortmund",
-            "year": "1909",
+            "year": 1909,
             "localization": "Dortmund"
         },
         {
             "id": "2",
             "name": "FC Barcelona",
-            "year": "1899",
+            "year": 1899,
             "localization": "Barcelona"
         }
     ],
@@ -35,7 +35,7 @@
             "date": "14-10-2025",
             "competition": "UCL",
             "location": "Signal Iduna Park",
-            "length": "95",
+            "length": 95,
             "homeResult": "5",
             "awayResult": "3",
             "homeTeamId": "1",
