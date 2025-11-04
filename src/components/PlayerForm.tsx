@@ -6,6 +6,7 @@ type PlayerFormProps = {
     handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
     values: PlayerDto;
     isPending: boolean;
+    label: string;
 };
 
 const PlayerForm = ({
@@ -13,6 +14,7 @@ const PlayerForm = ({
     handleChange,
     values,
     isPending,
+    label,
 }: PlayerFormProps) => {
     const { name, surname, number, teamId } = values;
 
@@ -59,7 +61,7 @@ const PlayerForm = ({
                 />
             </div>
             <button disabled={isPending} type='submit'>
-                Edit book
+                {label}
             </button>
         </form>
     );

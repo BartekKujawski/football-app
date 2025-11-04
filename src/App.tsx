@@ -1,30 +1,67 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { useMenu } from './hooks/useMenu';
 import { Header } from './components/Header';
 import { Players } from './components/Players';
 import { Teams } from './components/Teams';
 import { Games } from './components/Games';
 import { Statistics } from './components/Statistics';
+import { useState } from 'react';
 
 const queryClient = new QueryClient();
 
 export const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background-color: ${(props) => props.theme.colors.background};
+}
 `;
 
 const App = () => {
     const { nav, handleMenu } = useMenu();
+    const [isLight, setIsLight] = useState(true);
+
+    const light = {
+        colors: {
+            primary: '#009FE5',
+            textPrimary: '#333',
+            background: '#eee',
+            textBackground: '#333',
+        },
+    };
+
+    const dark = {
+        colors: {
+            primary: '#009FE5',
+            textPrimary: '#ddd',
+            background: '#222',
+            textBackground: '#ddd',
+        },
+    };
+
+    const toggleLight = () => {
+        setIsLight((prevLight) => !prevLight);
+    };
 
     return (
-        <QueryClientProvider client={queryClient}>
-            <GlobalStyle />
-            <Header handleMenu={handleMenu} />
-            {nav === 'players' && <Players />}
-            {nav === 'teams' && <Teams />}
-            {nav === 'games' && <Games />}
-            {nav === 'statistics' && <Statistics />}
-        </QueryClientProvider>
+        <>
+            <QueryClientProvider client={queryClient}>
+                <ThemeProvider theme={isLight ? light : dark}>
+                    <GlobalStyle />
+                    <Header handleMenu={handleMenu} onClick={toggleLight} />
+                    {nav === 'players' && <Players />}
+                    {nav === 'teams' && <Teams />}
+                    {nav === 'games' && <Games />}
+                    {nav === 'statistics' && <Statistics />}
+                </ThemeProvider>
+            </QueryClientProvider>
+        </>
     );
 };
 

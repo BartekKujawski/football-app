@@ -40,6 +40,7 @@ const EditPlayer = ({ player }: SinglePlayerProps) => {
                 handleChange={handleChange}
                 values={values}
                 isPending={isPending}
+                label='Edit player'
             />
             {error && <p>{error.message}</p>}
         </>

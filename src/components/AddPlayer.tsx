@@ -44,6 +44,7 @@ const AddPlayer = () => {
                 handleChange={handleChange}
                 values={values}
                 isPending={isPending}
+                label='Add player'
             />
             {error && <p>{error.message}</p>}
         </>

@@ -11,9 +11,9 @@ export const useCreateQuery = (collection: Menu) => {
         mutationFn: async (payload: PlayerDto) => {
             return apiPost<Player, PlayerDto>(collection, payload);
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: [collection],
+        onSuccess: (createdPlayer) => {
+            queryClient.setQueryData<Player[]>([collection], (oldPlayers) => {
+                return [...(oldPlayers || []), createdPlayer];
             });
         },
     });

@@ -11,9 +11,11 @@ export const useDeleteQuery = (collection: Menu) => {
         mutationFn: async (deleteId: string) => {
             return apiDelete<Player>(`${collection}/${deleteId}`);
         },
-        onSuccess: () => {
-            queryClient.invalidateQueries({
-                queryKey: [collection],
+        onSuccess: (deletePlayer) => {
+            queryClient.setQueryData<Player[]>([collection], (oldPlayers) => {
+                return oldPlayers?.filter(
+                    (player) => player.id !== deletePlayer.id
+                );
             });
         },
     });

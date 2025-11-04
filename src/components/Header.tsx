@@ -1,22 +1,68 @@
+import styled from 'styled-components';
 import type { Menu } from '../types';
 
 const links = ['players', 'teams', 'games', 'statistics'];
 
 type HeaderProps = {
     handleMenu: (link: Menu) => void;
+    onClick: () => void;
 };
 
-const Header = ({ handleMenu }: HeaderProps) => {
+const StyledHeader = styled.header`
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+`;
+
+const StyledButton = styled.button`
+    position: absolute;
+    right: 40px;
+    border: 1px solid ${(props) => props.theme.colors.primary};
+    padding: 10px 25px;
+    transition: 0.3s;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: transparent;
+    color: ${(props) => props.theme.colors.primary};
+`;
+
+const StyledNav = styled.nav`
+    display: flex;
+    height: 100px
+    justify-content: center;
+    align-items: center;
+`;
+
+const StyledLink = styled.a`
+    text-transform: capitalize;
+    padding: 10px 25px;
+    transition: 0.3s;
+    font-weight: 500;
+    color: ${(props) => props.theme.colors.textPrimary};
+    &:hover {
+        cursor: pointer;
+        color: ${(props) => props.theme.colors.primary};
+    }
+`;
+
+const Header = ({ handleMenu, onClick }: HeaderProps) => {
     return (
-        <>
-            <nav>
+        <StyledHeader>
+            <StyledNav>
                 {links.map((link, index) => (
-                    <a key={index} onClick={() => handleMenu(link as Menu)}>
+                    <StyledLink
+                        key={index}
+                        onClick={() => handleMenu(link as Menu)}
+                    >
                         {link}
-                    </a>
+                    </StyledLink>
                 ))}
-            </nav>
-        </>
+            </StyledNav>
+            <StyledButton onClick={onClick}>Toggle mode</StyledButton>
+        </StyledHeader>
     );
 };
 
