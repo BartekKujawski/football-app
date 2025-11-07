@@ -48,7 +48,7 @@ const StyledLink = styled.a`
     }
 `;
 
-const Header = ({ handleMenu, onClick }: HeaderProps) => {
+export const Header = ({ handleMenu, onClick }: HeaderProps) => {
     return (
         <StyledHeader>
             <StyledNav>
@@ -65,5 +65,3 @@ const Header = ({ handleMenu, onClick }: HeaderProps) => {
         </StyledHeader>
     );
 };
-
-export { Header };

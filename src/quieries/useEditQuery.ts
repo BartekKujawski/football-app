@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useApi } from '../hooks/useApi';
-import type { Menu, Player, PlayerDto } from '../types';
+import type { Menu, Collection, CollectionDto } from '../types';
 
 export const useEditQuery = (editId: string, collection: Menu) => {
     const { apiPatch } = useApi();
@@ -8,10 +8,10 @@ export const useEditQuery = (editId: string, collection: Menu) => {
 
     const { data, error, isPending, mutate } = useMutation({
         mutationKey: [collection, 'update'],
-        mutationFn: async (player: PlayerDto) => {
-            return apiPatch<Player, PlayerDto>(
+        mutationFn: async (item: CollectionDto) => {
+            return apiPatch<Collection, CollectionDto>(
                 `${collection}/${editId}`,
-                player
+                item
             );
         },
         onSuccess: () => {

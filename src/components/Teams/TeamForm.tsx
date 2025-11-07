@@ -1,22 +1,24 @@
 import type { ChangeEvent, FormEvent } from 'react';
-import type { PlayerDto } from '../types';
+import type { TeamDto } from '../../types';
 
-type PlayerFormProps = {
+type TeamFormProps = {
     handleSubmit: (e: FormEvent) => void;
-    handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    values: PlayerDto;
+    handleChange: (
+        e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ) => void;
+    values: TeamDto;
     isPending: boolean;
     label: string;
 };
 
-const PlayerForm = ({
+export const TeamForm = ({
     handleSubmit,
     handleChange,
     values,
     isPending,
     label,
-}: PlayerFormProps) => {
-    const { name, surname, number, teamId } = values;
+}: TeamFormProps) => {
+    const { name, year, localization } = values;
 
     return (
         <form onSubmit={handleSubmit}>
@@ -31,32 +33,22 @@ const PlayerForm = ({
                 />
             </div>
             <div>
-                <label htmlFor='surname'>Surname</label>
-                <input
-                    type='text'
-                    id='surname'
-                    name='surname'
-                    value={surname}
-                    onChange={handleChange}
-                />
-            </div>
-            <div>
-                <label htmlFor='number'>Number</label>
+                <label htmlFor='year'>Year</label>
                 <input
                     type='number'
-                    id='number'
-                    name='number'
-                    value={number}
+                    id='year'
+                    name='year'
+                    value={year}
                     onChange={handleChange}
                 />
             </div>
             <div>
-                <label htmlFor='teamId'>Team</label>
+                <label htmlFor='localization'>Localization</label>
                 <input
                     type='text'
-                    id='teamId'
-                    name='teamId'
-                    value={teamId}
+                    id='localization'
+                    name='localization'
+                    value={localization}
                     onChange={handleChange}
                 />
             </div>
@@ -66,5 +58,3 @@ const PlayerForm = ({
         </form>
     );
 };
-
-export { PlayerForm };

@@ -2,8 +2,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import { useMenu } from './hooks/useMenu';
 import { Header } from './components/Header';
-import { Players } from './components/Players';
-import { Teams } from './components/Teams';
+import { Players } from './components/Players/Players';
+import { Teams } from './components/Teams/Teams';
 import { Games } from './components/Games';
 import { Statistics } from './components/Statistics';
 import { useState } from 'react';
@@ -23,7 +23,7 @@ body {
 }
 `;
 
-const App = () => {
+export const App = () => {
     const { nav, handleMenu } = useMenu();
     const [isLight, setIsLight] = useState(true);
 
@@ -64,5 +64,3 @@ const App = () => {
         </>
     );
 };
-
-export { App };

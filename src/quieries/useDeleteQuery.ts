@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useApi } from '../hooks/useApi';
-import type { Menu, Player } from '../types';
+import type { Menu, Collection } from '../types';
 
 export const useDeleteQuery = (collection: Menu) => {
     const { apiDelete } = useApi();
@@ -9,13 +9,11 @@ export const useDeleteQuery = (collection: Menu) => {
     const { data, error, isPending, mutate } = useMutation({
         mutationKey: [collection, 'delete'],
         mutationFn: async (deleteId: string) => {
-            return apiDelete<Player>(`${collection}/${deleteId}`);
+            return apiDelete<Collection>(`${collection}/${deleteId}`);
         },
-        onSuccess: (deletePlayer) => {
-            queryClient.setQueryData<Player[]>([collection], (oldPlayers) => {
-                return oldPlayers?.filter(
-                    (player) => player.id !== deletePlayer.id
-                );
+        onSuccess: (deleteItem) => {
+            queryClient.setQueryData<Collection[]>([collection], (oldItems) => {
+                return oldItems?.filter((item) => item.id !== deleteItem.id);
             });
         },
     });

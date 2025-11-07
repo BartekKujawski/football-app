@@ -1,13 +1,16 @@
 import { useState } from 'react';
-import { useDeleteQuery } from '../quieries/useDeleteQuery';
-import type { Player } from '../types';
+import { useDeleteQuery } from '../../quieries/useDeleteQuery';
+import type { Player } from '../../types';
 
 type SinglePlayerProps = {
     player: Player;
     onCancel: () => void;
 };
 
-const DeletePlayerConfirmation = ({ player, onCancel }: SinglePlayerProps) => {
+export const DeletePlayerConfirmation = ({
+    player,
+    onCancel,
+}: SinglePlayerProps) => {
     const { isPending, error, mutate } = useDeleteQuery('players');
     const [isOnTeam, setIsOnTeam] = useState(false);
 
@@ -38,5 +41,3 @@ const DeletePlayerConfirmation = ({ player, onCancel }: SinglePlayerProps) => {
         </div>
     );
 };
-
-export { DeletePlayerConfirmation };

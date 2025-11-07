@@ -37,7 +37,6 @@ export const useApi = () => {
         return await call<R, P>(url, 'POST', data);
     };
     const apiPatch = async <R, P>(url: string, data: P) => {
-        // MOŻNA TEŻ BYLO UŻYĆ PUT
         return await call<R, P>(url, 'PATCH', data);
     };
 

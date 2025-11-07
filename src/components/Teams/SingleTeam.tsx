@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import type { Player } from '../types';
-import { DeletePlayerConfirmation } from './DeletePlayerConfirmation';
-import { EditPlayer } from './EditPlayer';
+import type { Team } from '../../types';
+import { EditTeam } from './EditTeam';
+import { DeleteTeamConfirmation } from './DeleteTeamConfirmation';
 
-type SinglePlayerProps = {
-    player: Player;
+type SingleTeamProps = {
+    team: Team;
 };
 
-const SinglePlayer = ({ player }: SinglePlayerProps) => {
+const SingleTeam = ({ team }: SingleTeamProps) => {
     const [mode, setMode] = useState<'edit' | 'delete' | 'none'>('none');
-
     const toggleDelete = () => {
         setMode((prevMode) => (prevMode === 'delete' ? 'none' : 'delete'));
     };
@@ -24,24 +23,20 @@ const SinglePlayer = ({ player }: SinglePlayerProps) => {
     return (
         <li>
             <h2>
-                {player.name} {player.surname} | {player.number}
+                {team.name} | {team.year}
             </h2>
-            {/* <h3>{player.teamId}</h3> */}
             <button onClick={toggleEdit}>
                 {mode === 'edit' ? 'Cancel' : 'Edit'}
             </button>
             <button onClick={toggleDelete}>
                 {mode === 'delete' ? 'Cancel' : 'Delete'}
             </button>
-            {mode === 'edit' ? <EditPlayer player={player} /> : undefined}
+            {mode === 'edit' ? <EditTeam team={team} /> : undefined}
             {mode === 'delete' ? (
-                <DeletePlayerConfirmation
-                    player={player}
-                    onCancel={toggleReset}
-                />
+                <DeleteTeamConfirmation team={team} onCancel={toggleReset} />
             ) : undefined}
         </li>
     );
 };
 
-export { SinglePlayer };
+export { SingleTeam };

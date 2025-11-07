@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useApi } from '../hooks/useApi';
-import type { Menu, Player, PlayerDto } from '../types';
+import type { Menu, Collection, CollectionDto } from '../types';
 
 export const useCreateQuery = (collection: Menu) => {
     const { apiPost } = useApi();
@@ -8,12 +8,12 @@ export const useCreateQuery = (collection: Menu) => {
 
     const { data, error, isPending, mutate } = useMutation({
         mutationKey: [collection, 'create'],
-        mutationFn: async (payload: PlayerDto) => {
-            return apiPost<Player, PlayerDto>(collection, payload);
+        mutationFn: async (payload: CollectionDto) => {
+            return apiPost<Collection, CollectionDto>(collection, payload);
         },
-        onSuccess: (createdPlayer) => {
-            queryClient.setQueryData<Player[]>([collection], (oldPlayers) => {
-                return [...(oldPlayers || []), createdPlayer];
+        onSuccess: (createdItem) => {
+            queryClient.setQueryData<Collection[]>([collection], (oldItems) => {
+                return [...(oldItems || []), createdItem];
             });
         },
     });

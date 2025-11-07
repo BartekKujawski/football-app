@@ -8,18 +8,18 @@
       "teamId": "1"
     },
     {
-      "id": "2",
-      "name": "Pedri",
-      "surname": "Gonzalez",
-      "number": 8,
-      "teamId": "2"
-    },
-    {
       "name": "Julien",
       "surname": "Duranville",
       "number": 16,
       "teamId": "1",
       "id": "WBfRL2t"
+    },
+    {
+      "name": "Lamine",
+      "surname": "Yamal",
+      "number": 10,
+      "teamId": "2",
+      "id": "eZCKfsJ"
     }
   ],
   "teams": [
@@ -34,17 +34,23 @@
       "name": "FC Barcelona",
       "year": 1899,
       "localization": "Barcelona"
+    },
+    {
+      "name": "Lech Poznań",
+      "year": 1922,
+      "localization": "Poznań",
+      "id": "GLj6YGQ"
     }
   ],
   "games": [
     {
       "id": "1",
-      "date": "14-10-2025",
+      "date": "2025-10-14",
       "competition": "UCL",
       "location": "Signal Iduna Park",
       "length": 95,
-      "homeResult": "5",
-      "awayResult": "3",
+      "homeResult": 5,
+      "awayResult": 3,
       "homeTeamId": "1",
       "awayTeamId": "2"
     }

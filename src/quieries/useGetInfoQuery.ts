@@ -1,14 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { useApi } from '../hooks/useApi';
-import type { Menu, Player } from '../types';
+import type { Menu } from '../types';
 
-export const useGetInfoQuery = (collection: Menu) => {
+export const useGetInfoQuery = <C>(collection: Menu) => {
     const { apiGet } = useApi();
 
     const { data, error, isLoading } = useQuery({
         queryKey: [collection],
         queryFn: async () => {
-            return apiGet<Player[]>(collection);
+            return apiGet<C[]>(collection);
         },
     });
 

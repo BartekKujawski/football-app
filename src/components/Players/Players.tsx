@@ -1,7 +1,7 @@
 import { AddPlayer } from './AddPlayer';
 import { PlayersList } from './PlayersList';
 
-const Players = () => {
+export const Players = () => {
     return (
         <>
             <AddPlayer />
@@ -9,5 +9,3 @@ const Players = () => {
         </>
     );
 };
-
-export { Players };

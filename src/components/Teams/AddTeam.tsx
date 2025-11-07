@@ -1,25 +1,19 @@
 import { useState, type ChangeEvent, type FormEvent } from 'react';
-import { useEditQuery } from '../quieries/useEditQuery';
-import type { Player } from '../types';
-import { PlayerForm } from './PlayerForm';
+import { useCreateQuery } from '../../quieries/useCreateQuery';
+import { TeamForm } from './TeamForm';
 
-type SinglePlayerProps = {
-    player: Player;
-};
-
-const EditPlayer = ({ player }: SinglePlayerProps) => {
-    const { mutate, error, isPending } = useEditQuery(player.id, 'players');
+export const AddTeam = () => {
+    const { mutate, error, isPending } = useCreateQuery('teams');
     const [values, setValues] = useState({
-        name: player.name,
-        surname: player.surname,
-        number: player.number,
-        teamId: player.teamId,
+        name: '',
+        year: 2025,
+        localization: '',
     });
 
-    const { name, surname, number, teamId } = values;
+    const { name, year, localization } = values;
 
     const handleChange = (
-        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+        e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
     ) => {
         const { name, value, type } = e.target;
         setValues((prevValues) => ({
@@ -30,21 +24,27 @@ const EditPlayer = ({ player }: SinglePlayerProps) => {
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
-        mutate({ name, surname, number, teamId });
+
+        mutate({ name, year, localization });
+        setValues({
+            name: '',
+            year: 2025,
+            localization: '',
+        });
     };
+
+    if (isPending) return <p>Loading...</p>;
 
     return (
         <>
-            <PlayerForm
+            <TeamForm
                 handleSubmit={handleSubmit}
                 handleChange={handleChange}
                 values={values}
                 isPending={isPending}
-                label='Edit player'
+                label='Add team'
             />
             {error && <p>{error.message}</p>}
         </>
     );
 };
-
-export { EditPlayer };

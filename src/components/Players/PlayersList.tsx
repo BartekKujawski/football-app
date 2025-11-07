@@ -1,8 +1,9 @@
-import { useGetInfoQuery } from '../quieries/useGetInfoQuery';
+import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
+import type { Player } from '../../types';
 import { SinglePlayer } from './SinglePlayer';
 
-const PlayersList = () => {
-    const { isLoading, error, data } = useGetInfoQuery('players');
+export const PlayersList = () => {
+    const { isLoading, error, data } = useGetInfoQuery<Player>('players');
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>{error.message}</p>;
@@ -18,5 +19,3 @@ const PlayersList = () => {
         </>
     );
 };
-
-export { PlayersList };
