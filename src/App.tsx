@@ -16,6 +16,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
     font-family: 'Inter', sans-serif;
+    list-style: none;
 }
 
 body {
@@ -25,13 +26,14 @@ body {
 
 export const App = () => {
     const { nav, handleMenu } = useMenu();
-    const [isLight, setIsLight] = useState(true);
+    const [isLight, setIsLight] = useState(false);
 
     const light = {
         colors: {
             primary: '#009FE5',
             textPrimary: '#333',
             background: '#eee',
+            contentBackground: '#fff',
             textBackground: '#333',
         },
     };
@@ -41,6 +43,7 @@ export const App = () => {
             primary: '#009FE5',
             textPrimary: '#ddd',
             background: '#222',
+            contentBackground: '#333',
             textBackground: '#ddd',
         },
     };

@@ -10,7 +10,6 @@ export const TeamsList = () => {
 
     return (
         <>
-            <h1>Teams: </h1>
             <ul>
                 {data?.map((el) => (
                     <SingleTeam key={el.id} team={el} />

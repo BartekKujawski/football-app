@@ -6,6 +6,7 @@ declare module 'styled-components' {
             primary: string;
             background: string;
             textPrimary: string;
+            contentBackground: string;
             textBackground: string;
         };
     }

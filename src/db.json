@@ -20,6 +20,13 @@
       "number": 10,
       "teamId": "2",
       "id": "eZCKfsJ"
+    },
+    {
+      "name": "Benjamin",
+      "surname": "Sesko",
+      "number": 30,
+      "teamId": "Puu0YhW",
+      "id": "AJZ9y-A"
     }
   ],
   "teams": [
@@ -40,6 +47,12 @@
       "year": 1922,
       "localization": "Poznań",
       "id": "GLj6YGQ"
+    },
+    {
+      "name": "Manchester United",
+      "year": 1878,
+      "localization": "Manchester",
+      "id": "Puu0YhW"
     }
   ],
   "games": [

@@ -1,11 +1,22 @@
 import { useState } from 'react';
 import { useDeleteQuery } from '../../quieries/useDeleteQuery';
 import type { Player } from '../../types';
+import styled from 'styled-components';
+import { StyledButton, StyledNegButton2 } from '../../helpers';
 
 type SinglePlayerProps = {
     player: Player;
     onCancel: () => void;
 };
+
+const StyledDiv = styled.div`
+    display: flex;
+    border-radius: 15px;
+    flex-basis: 100%;
+    padding: 25px 15px;
+    background-color: ${(props) => props.theme.colors.contentBackground};
+    color: ${(props) => props.theme.colors.textPrimary};
+`;
 
 export const DeletePlayerConfirmation = ({
     player,
@@ -23,21 +34,21 @@ export const DeletePlayerConfirmation = ({
     };
 
     return (
-        <div>
+        <StyledDiv>
             <p>Do you really want to delete this player?</p>
-            <button
+            <StyledNegButton2
                 disabled={isPending || isOnTeam}
                 onClick={deletePlayerConfirm}
             >
                 Yes
-            </button>
-            <button disabled={isPending} onClick={onCancel}>
+            </StyledNegButton2>
+            <StyledButton disabled={isPending} onClick={onCancel}>
                 No
-            </button>
+            </StyledButton>
             {isOnTeam && (
                 <p>You cannot delete a player who is part of a team!</p>
             )}
             {error && <p>{error.message}</p>}
-        </div>
+        </StyledDiv>
     );
 };
