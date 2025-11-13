@@ -26,7 +26,7 @@ export const DeletePlayerConfirmation = ({
     const [isOnTeam, setIsOnTeam] = useState(false);
 
     const deletePlayerConfirm = () => {
-        if (player.teamId !== undefined) {
+        if (player.teamId && player.teamId.length > 0) {
             return setIsOnTeam(true);
         }
         setIsOnTeam(false);
