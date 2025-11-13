@@ -32,6 +32,7 @@ export const App = () => {
         colors: {
             primary: '#009FE5',
             textPrimary: '#333',
+            textHoverPrimary: '#000',
             background: '#eee',
             contentBackground: '#fff',
             textBackground: '#333',
@@ -42,6 +43,7 @@ export const App = () => {
         colors: {
             primary: '#009FE5',
             textPrimary: '#ddd',
+            textHoverPrimary: '#fff',
             background: '#222',
             contentBackground: '#333',
             textBackground: '#ddd',

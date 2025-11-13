@@ -1,8 +1,13 @@
-import type { ChangeEvent, FormEvent } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import type { PlayerDto, Team } from '../../types';
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
-import styled from 'styled-components';
-import { StyledMainButton } from '../../helpers';
+import {
+    StyledForm,
+    StyledFormDiv,
+    StyledInput,
+    StyledPrimaryButton,
+    StyledSelect,
+} from '../../helpers';
 
 type PlayerFormProps = {
     handleSubmit: (e: FormEvent) => void;
@@ -14,46 +19,6 @@ type PlayerFormProps = {
     label: string;
 };
 
-const StyledForm = styled.form`
-    display: flex;
-    border-radius: 15px;
-    margin: 0 50px;
-    padding: 25px 15px;
-    justify-content: center;
-    align-items: center;
-    background-color: ${(props) => props.theme.colors.contentBackground};
-    color: ${(props) => props.theme.colors.textPrimary};
-`;
-
-const StyledDiv = styled.div`
-    margin-right: 50px;
-`;
-
-const StyledInput = styled.input`
-    outline: none;
-    border: none;
-    font-size: 16px;
-    padding: 5px;
-    margin-left: 10px;
-    border-radius: 8px;
-    background-color: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.textPrimary};
-    transition: 0.3s ease;
-`;
-
-const StyledSelect = styled.select`
-    outline: none;
-    border: none;
-    font-size: 16px;
-    padding: 5px;
-    margin-left: 10px;
-    border-radius: 8px;
-    background-color: ${(props) => props.theme.colors.background};
-    color: ${(props) => props.theme.colors.textPrimary};
-    cursor: pointer;
-    transition: 0.3s ease;
-`;
-
 export const PlayerForm = ({
     handleSubmit,
     handleChange,
@@ -62,11 +27,12 @@ export const PlayerForm = ({
     label,
 }: PlayerFormProps) => {
     const { data: teams } = useGetInfoQuery<Team>('teams');
+    const [value, setValue] = useState('');
     const { name, surname, number } = values;
 
     return (
         <StyledForm onSubmit={handleSubmit}>
-            <StyledDiv>
+            <StyledFormDiv>
                 <label htmlFor='name'>Name</label>
                 <StyledInput
                     type='text'
@@ -75,8 +41,8 @@ export const PlayerForm = ({
                     value={name}
                     onChange={handleChange}
                 />
-            </StyledDiv>
-            <StyledDiv>
+            </StyledFormDiv>
+            <StyledFormDiv>
                 <label htmlFor='surname'>Surname</label>
                 <StyledInput
                     type='text'
@@ -85,8 +51,8 @@ export const PlayerForm = ({
                     value={surname}
                     onChange={handleChange}
                 />
-            </StyledDiv>
-            <StyledDiv>
+            </StyledFormDiv>
+            <StyledFormDiv>
                 <label htmlFor='number'>Number</label>
                 <StyledInput
                     type='number'
@@ -95,20 +61,26 @@ export const PlayerForm = ({
                     value={number}
                     onChange={handleChange}
                 />
-            </StyledDiv>
-            <StyledDiv>
+            </StyledFormDiv>
+            <StyledFormDiv>
                 <label htmlFor='teamId'>Team</label>
-                <StyledSelect name='teamId' id='teamId' onChange={handleChange}>
+                <StyledSelect
+                    name='teamId'
+                    id='teamId'
+                    value={value}
+                    onChange={(e) => setValue(e.target.value)}
+                >
+                    <option value=''>Select a team</option>
                     {teams?.map((team) => (
                         <option key={team.id} value={team.id}>
                             {team.name}
                         </option>
                     ))}
                 </StyledSelect>
-            </StyledDiv>
-            <StyledMainButton disabled={isPending} type='submit'>
+            </StyledFormDiv>
+            <StyledPrimaryButton disabled={isPending} type='submit'>
                 {label}
-            </StyledMainButton>
+            </StyledPrimaryButton>
         </StyledForm>
     );
 };

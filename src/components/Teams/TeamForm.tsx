@@ -1,5 +1,11 @@
 import type { ChangeEvent, FormEvent } from 'react';
 import type { TeamDto } from '../../types';
+import {
+    StyledForm,
+    StyledFormDiv,
+    StyledInput,
+    StyledPrimaryButton,
+} from '../../helpers';
 
 type TeamFormProps = {
     handleSubmit: (e: FormEvent) => void;
@@ -21,40 +27,40 @@ export const TeamForm = ({
     const { name, year, localization } = values;
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
+        <StyledForm onSubmit={handleSubmit}>
+            <StyledFormDiv>
                 <label htmlFor='name'>Name</label>
-                <input
+                <StyledInput
                     type='text'
                     id='name'
                     name='name'
                     value={name}
                     onChange={handleChange}
                 />
-            </div>
-            <div>
+            </StyledFormDiv>
+            <StyledFormDiv>
                 <label htmlFor='year'>Year</label>
-                <input
+                <StyledInput
                     type='number'
                     id='year'
                     name='year'
                     value={year}
                     onChange={handleChange}
                 />
-            </div>
-            <div>
+            </StyledFormDiv>
+            <StyledFormDiv>
                 <label htmlFor='localization'>Localization</label>
-                <input
+                <StyledInput
                     type='text'
                     id='localization'
                     name='localization'
                     value={localization}
                     onChange={handleChange}
                 />
-            </div>
-            <button disabled={isPending} type='submit'>
+            </StyledFormDiv>
+            <StyledPrimaryButton disabled={isPending} type='submit'>
                 {label}
-            </button>
-        </form>
+            </StyledPrimaryButton>
+        </StyledForm>
     );
 };

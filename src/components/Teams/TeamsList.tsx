@@ -1,6 +1,7 @@
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import type { Team } from '../../types';
 import { SingleTeam } from './SingleTeam';
+import { StyledUl } from '../../helpers';
 
 export const TeamsList = () => {
     const { isLoading, error, data } = useGetInfoQuery<Team>('teams');
@@ -10,11 +11,11 @@ export const TeamsList = () => {
 
     return (
         <>
-            <ul>
+            <StyledUl>
                 {data?.map((el) => (
                     <SingleTeam key={el.id} team={el} />
                 ))}
-            </ul>
+            </StyledUl>
         </>
     );
 };

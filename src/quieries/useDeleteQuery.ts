@@ -11,9 +11,9 @@ export const useDeleteQuery = (collection: Menu) => {
         mutationFn: async (deleteId: string) => {
             return apiDelete<Collection>(`${collection}/${deleteId}`);
         },
-        onSuccess: (deleteItem) => {
-            queryClient.setQueryData<Collection[]>([collection], (oldItems) => {
-                return oldItems?.filter((item) => item.id !== deleteItem.id);
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [collection],
             });
         },
     });

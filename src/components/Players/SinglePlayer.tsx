@@ -4,28 +4,7 @@ import { DeletePlayerConfirmation } from './DeletePlayerConfirmation';
 import { EditPlayer } from './EditPlayer';
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import { StyledButton, StyledNegButton } from '../../helpers';
-import styled from 'styled-components';
-
-const StyledLi = styled.li`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin: 2px 0;
-`;
-const StyledH2 = styled.h2`
-    font-size: 16px;
-    flex-basis: 15%;
-`;
-
-const StyledNumber = styled.span`
-    display: inline-block;
-    width: 30px;
-`;
-
-const StyledP = styled.p`
-    font-size: 14px;
-    flex-basis: 15%;
-`;
+import { StyledLi, StyledH2, StyledNumber, StyledP } from '../../helpers';
 
 type SinglePlayerProps = {
     player: Player;
