@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useState } from 'react';
 import type { Player, Team } from '../../types';
 import { EditTeam } from './EditTeam';
 import { DeleteTeamConfirmation } from './DeleteTeamConfirmation';
@@ -8,10 +8,10 @@ import {
     StyledButton,
     StyledNegButton,
     StyledP,
-    StyledSelect,
-    StyledPrimaryButton,
 } from '../../helpers';
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
+import { PlayerListItem } from './PlayerListItem';
+import { AddPlayerToTeamForm } from './AddPlayerToTeamForm';
 
 type SingleTeamProps = {
     team: Team;
@@ -21,7 +21,7 @@ const SingleTeam = ({ team }: SingleTeamProps) => {
     const { data: players } = useGetInfoQuery<Player>('players');
     const [mode, setMode] = useState<'edit' | 'delete' | 'none'>('none');
     const [showTeamPlayers, setShowTeamPlayers] = useState(false);
-    const [value, setValue] = useState('');
+
     const toggleDelete = () => {
         setMode((prevMode) => (prevMode === 'delete' ? 'none' : 'delete'));
     };
@@ -35,10 +35,6 @@ const SingleTeam = ({ team }: SingleTeamProps) => {
 
     const toggleShowTeamPlayers = () => {
         setShowTeamPlayers((prevShowTeamPlayers) => !prevShowTeamPlayers);
-    };
-
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
     };
 
     return (
@@ -73,39 +69,9 @@ const SingleTeam = ({ team }: SingleTeamProps) => {
                         ?.filter((player) => player.teamId === team.id)
                         .sort((a, b) => a.number - b.number)
                         .map((player) => (
-                            <li key={player.id}>
-                                {player.number} | {player.name} {player.surname}
-                            </li>
+                            <PlayerListItem key={player.id} player={player} />
                         ))}
-                    <li>
-                        <form onClick={handleSubmit}>
-                            <StyledSelect
-                                name='players'
-                                id='players'
-                                value={value}
-                                onChange={(e) => setValue(e.target.value)}
-                            >
-                                <option value=''>Select a player</option>
-                                {players
-                                    ?.filter(
-                                        (player) =>
-                                            player.teamId === undefined ||
-                                            player.teamId === ''
-                                    )
-                                    .map((player) => (
-                                        <option
-                                            key={player.id}
-                                            value={player.id}
-                                        >
-                                            {player.name} {player.surname}
-                                        </option>
-                                    ))}
-                            </StyledSelect>
-                            <StyledPrimaryButton type='submit'>
-                                Add player to team
-                            </StyledPrimaryButton>
-                        </form>
-                    </li>
+                    <AddPlayerToTeamForm team={team} />
                 </ul>
             )}
         </>

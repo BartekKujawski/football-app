@@ -1,4 +1,4 @@
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { type ChangeEvent, type FormEvent } from 'react';
 import type { PlayerDto, Team } from '../../types';
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import {
@@ -27,8 +27,7 @@ export const PlayerForm = ({
     label,
 }: PlayerFormProps) => {
     const { data: teams } = useGetInfoQuery<Team>('teams');
-    const [value, setValue] = useState('');
-    const { name, surname, number } = values;
+    const { name, surname, number, teamId } = values;
 
     return (
         <StyledForm onSubmit={handleSubmit}>
@@ -67,8 +66,8 @@ export const PlayerForm = ({
                 <StyledSelect
                     name='teamId'
                     id='teamId'
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    value={teamId}
+                    onChange={handleChange}
                 >
                     <option value=''>Select a team</option>
                     {teams?.map((team) => (
