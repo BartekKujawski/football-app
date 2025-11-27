@@ -4,7 +4,7 @@ import { useMenu } from './hooks/useMenu';
 import { Header } from './components/Header';
 import { Players } from './components/Players/Players';
 import { Teams } from './components/Teams/Teams';
-import { Games } from './components/Games';
+import { Games } from './components/Games/Games';
 import { Statistics } from './components/Statistics';
 import { useState } from 'react';
 

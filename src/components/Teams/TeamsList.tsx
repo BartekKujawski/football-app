@@ -1,7 +1,7 @@
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import type { Team } from '../../types';
 import { SingleTeam } from './SingleTeam';
-import { StyledUl } from '../../helpers';
+import { StyledUl, StyledHeaderLi, StyledH2, StyledP } from '../../helpers';
 
 export const TeamsList = () => {
     const { isLoading, error, data } = useGetInfoQuery<Team>('teams');
@@ -12,6 +12,13 @@ export const TeamsList = () => {
     return (
         <>
             <StyledUl>
+                <StyledHeaderLi>
+                    <StyledH2>Name | Year</StyledH2>
+                    <StyledP style={{ marginRight: '250px' }}>
+                        Localization
+                    </StyledP>
+                    <div></div>
+                </StyledHeaderLi>
                 {data?.map((el) => (
                     <SingleTeam key={el.id} team={el} />
                 ))}

@@ -94,6 +94,12 @@
       "year": 1886,
       "localization": "London",
       "id": "CLxcf68"
+    },
+    {
+      "name": "Legia Warszawa",
+      "year": 1916,
+      "localization": "Warszawa",
+      "id": "YIQa0w0"
     }
   ],
   "games": [
@@ -107,6 +113,17 @@
       "awayResult": 3,
       "homeTeamId": "1",
       "awayTeamId": "2"
+    },
+    {
+      "date": "2016-11-22",
+      "competition": "UCL",
+      "location": "Signal Iduna Park",
+      "length": 90,
+      "homeResult": 8,
+      "awayResult": 4,
+      "homeTeamId": "1",
+      "awayTeamId": "YIQa0w0",
+      "id": "-6UZWWm"
     }
   ]
 }

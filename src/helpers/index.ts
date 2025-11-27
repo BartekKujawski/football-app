@@ -77,6 +77,7 @@ export const StyledUl = styled.ul`
 
 export const StyledForm = styled.form`
     display: flex;
+    flex-wrap: wrap;
     border-radius: 15px;
     margin: 0 50px;
     padding: 25px 15px;
@@ -118,12 +119,17 @@ export const StyledSelect = styled.select`
 export const StyledLi = styled.li`
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     flex-wrap: wrap;
     margin: 2px 0;
 `;
 export const StyledH2 = styled.h2`
-    font-size: 16px;
-    flex-basis: 15%;
+    font-size: 14px;
+    flex-basis: 18%;
+    white-space: nowrap;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 `;
 
 export const StyledNumber = styled.span`
@@ -134,6 +140,12 @@ export const StyledNumber = styled.span`
 export const StyledP = styled.p`
     font-size: 14px;
     flex-basis: 15%;
+    flex-shrink: 1;
+    flex-grow: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    min-width: 0;
 `;
 
 export const StyledDelDiv = styled.div`
@@ -143,4 +155,70 @@ export const StyledDelDiv = styled.div`
     padding: 25px 15px;
     background-color: ${(props) => props.theme.colors.contentBackground};
     color: ${(props) => props.theme.colors.textPrimary};
+`;
+
+export const StyledHeaderLi = styled.li`
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin: 2px 0;
+    font-weight: bold;
+    border-bottom: 2px solid ${(props) => props.theme.colors.background};
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+`;
+
+export const StyledTable = styled.table`
+    width: calc(100% - 100px);
+    border-collapse: collapse;
+    border-radius: 15px;
+    margin: 15px 50px;
+    padding: 25px;
+    background-color: ${(props) => props.theme.colors.contentBackground};
+    color: ${(props) => props.theme.colors.textPrimary};
+    display: block;
+    height: 700px;
+    overflow-y: auto;
+`;
+
+export const StyledTableWrapper = styled.div`
+    border-radius: 15px;
+    margin: 15px 50px;
+    padding: 25px;
+    background-color: ${(props) => props.theme.colors.contentBackground};
+    color: ${(props) => props.theme.colors.textPrimary};
+    height: 700px;
+    overflow-y: auto;
+`;
+
+export const StyledTableInner = styled.table`
+    width: 100%;
+    border-collapse: collapse;
+`;
+
+export const StyledTableHeader = styled.thead`
+    font-weight: bold;
+    border-bottom: 2px solid ${(props) => props.theme.colors.background};
+`;
+
+export const StyledTableHeaderCell = styled.th`
+    text-align: left;
+    padding: 10px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+`;
+
+export const StyledTableBody = styled.tbody``;
+
+export const StyledTableRow = styled.tr`
+    margin: 2px 0;
+`;
+
+export const StyledTableCell = styled.td`
+    padding: 10px 5px;
+    font-size: 14px;
+    vertical-align: top;
 `;
