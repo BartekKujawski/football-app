@@ -1,10 +1,69 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 import type { Player, Team } from '../../types';
 import { DeletePlayerConfirmation } from './DeletePlayerConfirmation';
 import { EditPlayer } from './EditPlayer';
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import { StyledButton, StyledNegButton } from '../../helpers';
 import { StyledLi, StyledH2, StyledNumber, StyledP } from '../../helpers';
+
+const StyledIconButton = styled(StyledButton)`
+    position: relative;
+
+    @media (max-width: 450px) {
+        padding: 8px;
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+
+        &::before {
+            content: '✏';
+            font-size: 16px;
+        }
+
+        & > * {
+            display: none !important;
+        }
+    }
+`;
+
+const StyledIconDeleteButton = styled(StyledNegButton)`
+    position: relative;
+
+    @media (max-width: 450px) {
+        padding: 8px;
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+
+        &::before {
+            content: '×';
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        & > * {
+            display: none !important;
+        }
+    }
+`;
+
+const StyledButtonContainer = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: fit-content;
+`;
 
 type SinglePlayerProps = {
     player: Player;
@@ -33,14 +92,14 @@ export const SinglePlayer = ({ player }: SinglePlayerProps) => {
                 {player.name} {player.surname}
             </StyledH2>
             <StyledP>{playerTeam?.name}</StyledP>
-            <div>
-                <StyledButton onClick={toggleEdit}>
+            <StyledButtonContainer>
+                <StyledIconButton onClick={toggleEdit}>
                     {mode === 'edit' ? 'Cancel' : 'Edit'}
-                </StyledButton>
-                <StyledNegButton onClick={toggleDelete}>
+                </StyledIconButton>
+                <StyledIconDeleteButton onClick={toggleDelete}>
                     {mode === 'delete' ? 'Cancel' : 'Delete'}
-                </StyledNegButton>
-            </div>
+                </StyledIconDeleteButton>
+            </StyledButtonContainer>
             {mode === 'edit' ? <EditPlayer player={player} /> : undefined}
             {mode === 'delete' ? (
                 <DeletePlayerConfirmation

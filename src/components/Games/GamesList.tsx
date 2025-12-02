@@ -1,3 +1,4 @@
+import styled from 'styled-components';
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import type { Games } from '../../types';
 import { SingleGame } from './SingleGame';
@@ -8,6 +9,51 @@ import {
     StyledTableHeaderCell,
     StyledTableBody,
 } from '../../helpers';
+
+const StyledTeamHeaderCell = styled(StyledTableHeaderCell)`
+    max-width: 150px;
+    width: 150px;
+
+    @media (max-width: 900px) {
+        max-width: 130px;
+        width: 130px;
+    }
+
+    @media (max-width: 768px) {
+        max-width: 120px;
+        width: 120px;
+    }
+
+    @media (max-width: 615px) {
+        max-width: 100px;
+        width: 100px;
+    }
+
+    @media (max-width: 480px) {
+        max-width: 90px;
+        width: 90px;
+    }
+
+    @media (max-width: 475px) {
+        max-width: 80px;
+        width: 80px;
+    }
+`;
+
+const StyledCompetitionHeaderCell = styled(StyledTableHeaderCell)`
+    max-width: 100px;
+    width: 100px;
+
+    @media (max-width: 768px) {
+        max-width: 80px;
+        width: 80px;
+    }
+
+    @media (max-width: 480px) {
+        max-width: 70px;
+        width: 70px;
+    }
+`;
 
 export const GamesList = () => {
     const { isLoading, error, data } = useGetInfoQuery<Games>('games');
@@ -21,10 +67,10 @@ export const GamesList = () => {
                 <StyledTableInner>
                     <StyledTableHeader>
                         <tr>
-                            <StyledTableHeaderCell>Teams</StyledTableHeaderCell>
-                            <StyledTableHeaderCell>
+                            <StyledTeamHeaderCell>Teams</StyledTeamHeaderCell>
+                            <StyledCompetitionHeaderCell>
                                 Competition
-                            </StyledTableHeaderCell>
+                            </StyledCompetitionHeaderCell>
                             <StyledTableHeaderCell>Date</StyledTableHeaderCell>
                             <StyledTableHeaderCell>
                                 Location

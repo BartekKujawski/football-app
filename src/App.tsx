@@ -5,7 +5,7 @@ import { Header } from './components/Header';
 import { Players } from './components/Players/Players';
 import { Teams } from './components/Teams/Teams';
 import { Games } from './components/Games/Games';
-import { Statistics } from './components/Statistics';
+import { Statistics } from './components/Statistics/Statistics';
 import { useState } from 'react';
 
 const queryClient = new QueryClient();

@@ -1,73 +1,173 @@
-# React + TypeScript + Vite
+# Football App ⚽
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A football team management application for managing teams, players, games, and statistics. Built with React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. **Players**
 
-## React Compiler
+-   Add, edit, and delete players
+-   Assign players to teams
+-   Display list of all players with their numbers
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+### 2. **Teams**
 
-## Expanding the ESLint configuration
+-   Manage teams (name, founding year, location)
+-   Add players to teams
+-   Display team roster
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 3. **Games**
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+-   Create new matches
+-   Edit and delete games
+-   Match information:
+    -   Teams (home vs away)
+    -   Date and location
+    -   Result
+    -   Match duration
+    -   Competition type
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 4. **Statistics**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+-   **Last played game**: detailed information about the most recent match
+-   **Games chart**: visualization of the number of games in selected time period (day/week/month)
+-   **Top 3 teams**: ranking of teams by goals scored
+
+## 🛠️ Technologies
+
+-   **React 19** - UI library
+-   **TypeScript** - static typing
+-   **Vite** - build tool
+-   **TanStack Query (React Query)** - data management and caching
+-   **Styled Components** - component styling
+-   **JSON Server** - mock API backend
+-   **ESLint** - code linting
+
+## 📐 Project Requirements
+
+This project was built with the following requirements and constraints:
+
+-   **No routing library** - Navigation is handled through conditional rendering based on state
+-   **Styled Components** - Required for all component styling (no CSS modules or plain CSS)
+-   **React Query (TanStack Query)** - Required for all data fetching and state management
+
+## 📋 System Requirements
+
+-   Node.js (version 18 or higher)
+-   Yarn (or npm)
+
+## 🔧 Installation
+
+1. Clone the repository:
+
+```bash
+git clone <repository-url>
+cd football-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+yarn install
 ```
+
+## 🚀 Running the Application
+
+The application requires running two servers:
+
+### 1. API Server (JSON Server)
+
+In one terminal, run:
+
+```bash
+yarn node ./src/server.js
+```
+
+The API server will be available at: `http://localhost:3000`
+
+### 2. Development Server (Vite)
+
+In a second terminal, run:
+
+```bash
+yarn dev
+```
+
+The application will be available at: `http://localhost:5173`
+
+## 📁 Project Structure
+
+```
+football-app/
+├── src/
+│   ├── components/          # React components
+│   │   ├── Games/           # Game-related components
+│   │   ├── Players/         # Player-related components
+│   │   ├── Teams/           # Team-related components
+│   │   ├── Statistics/      # Statistics components
+│   │   └── Header.tsx       # Application header
+│   ├── hooks/               # Custom hooks
+│   │   ├── useMenu.ts       # Navigation hook
+│   │   └── useApi.ts        # API communication hook
+│   ├── quieries/            # React Query hooks
+│   │   ├── useGetInfoQuery.ts
+│   │   ├── useCreateQuery.ts
+│   │   ├── useEditQuery.ts
+│   │   └── useDeleteQuery.ts
+│   ├── types/               # TypeScript type definitions
+│   ├── helpers/             # Styled components and utility functions
+│   ├── db.json              # JSON Server database
+│   └── App.tsx              # Main application component
+├── package.json
+└── README.md
+```
+
+## 🎨 UI Features
+
+-   **Light/Dark mode**: theme toggle in the header
+-   **Responsive design**: application adapts to different screen sizes
+-   **Intuitive navigation**: easy switching between sections
+-   **Data visualization**: bar charts for game statistics
+
+## 📝 Scripts
+
+-   `yarn dev` - start development server
+-   `yarn build` - build production application
+-   `yarn preview` - preview built application
+-   `yarn lint` - run code linter
+-   `yarn serve:api` - start JSON Server API
+
+## 🔄 API Endpoints
+
+JSON Server provides the following endpoints:
+
+-   `GET /players` - list players
+-   `POST /players` - add player
+-   `PUT /players/:id` - edit player
+-   `DELETE /players/:id` - delete player
+
+-   `GET /teams` - list teams
+-   `POST /teams` - add team
+-   `PUT /teams/:id` - edit team
+-   `DELETE /teams/:id` - delete team
+
+-   `GET /games` - list games
+-   `POST /games` - add game
+-   `PUT /games/:id` - edit game
+-   `DELETE /games/:id` - delete game
+
+## 🎯 Optimizations
+
+The application utilizes:
+
+-   **React Query** for data caching and automatic refetching
+-   **useMemo** for optimizing expensive calculations (sorting, grouping, statistics)
+-   **Code splitting** through modular component structure
+
+## 📄 License
+
+This project is part of a React course.
+
+## 👨‍💻 Author
+
+Project created as part of learning React and TypeScript.

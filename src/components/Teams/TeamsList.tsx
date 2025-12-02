@@ -14,9 +14,7 @@ export const TeamsList = () => {
             <StyledUl>
                 <StyledHeaderLi>
                     <StyledH2>Name | Year</StyledH2>
-                    <StyledP style={{ marginRight: '250px' }}>
-                        Localization
-                    </StyledP>
+                    <StyledP>Localization</StyledP>
                     <div></div>
                 </StyledHeaderLi>
                 {data?.map((el) => (

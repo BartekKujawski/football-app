@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import styled from 'styled-components';
 import type { Player, Team } from '../../types';
 import { EditTeam } from './EditTeam';
 import { DeleteTeamConfirmation } from './DeleteTeamConfirmation';
@@ -12,6 +13,86 @@ import {
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import { PlayerListItem } from './PlayerListItem';
 import { AddPlayerToTeamForm } from './AddPlayerToTeamForm';
+
+const StyledIconButton = styled(StyledButton)`
+    position: relative;
+
+    @media (max-width: 450px) {
+        padding: 8px;
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+
+        &::before {
+            content: '✏';
+            font-size: 16px;
+        }
+
+        & > * {
+            display: none !important;
+        }
+    }
+`;
+
+const StyledIconDeleteButton = styled(StyledNegButton)`
+    position: relative;
+
+    @media (max-width: 450px) {
+        padding: 8px;
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+
+        &::before {
+            content: '×';
+            font-size: 20px;
+            line-height: 1;
+        }
+
+        & > * {
+            display: none !important;
+        }
+    }
+`;
+
+const StyledIconShowPlayersButton = styled(StyledButton)`
+    position: relative;
+
+    @media (max-width: 450px) {
+        padding: 8px;
+        min-width: 32px;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0;
+
+        &::before {
+            content: '👥';
+            font-size: 16px;
+        }
+
+        & > * {
+            display: none !important;
+        }
+    }
+`;
+
+const StyledButtonContainer = styled.div`
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
+`;
 
 type SingleTeamProps = {
     team: Team;
@@ -44,17 +125,17 @@ const SingleTeam = ({ team }: SingleTeamProps) => {
                     {team.name} | {team.year}
                 </StyledH2>
                 <StyledP>{team.localization}</StyledP>
-                <div>
-                    <StyledButton onClick={toggleShowTeamPlayers}>
+                <StyledButtonContainer>
+                    <StyledIconShowPlayersButton onClick={toggleShowTeamPlayers}>
                         {showTeamPlayers ? 'Hide players' : 'Show players'}
-                    </StyledButton>
-                    <StyledButton onClick={toggleEdit}>
+                    </StyledIconShowPlayersButton>
+                    <StyledIconButton onClick={toggleEdit}>
                         {mode === 'edit' ? 'Cancel' : 'Edit'}
-                    </StyledButton>
-                    <StyledNegButton onClick={toggleDelete}>
+                    </StyledIconButton>
+                    <StyledIconDeleteButton onClick={toggleDelete}>
                         {mode === 'delete' ? 'Cancel' : 'Delete'}
-                    </StyledNegButton>
-                </div>
+                    </StyledIconDeleteButton>
+                </StyledButtonContainer>
                 {mode === 'edit' ? <EditTeam team={team} /> : undefined}
                 {mode === 'delete' ? (
                     <DeleteTeamConfirmation

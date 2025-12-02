@@ -7,8 +7,7 @@
         "dev": "vite",
         "build": "tsc -b && vite build",
         "lint": "eslint . --ext ts,tsx",
-        "preview": "vite preview",
-        "serve:api": "json-server ./src/db/db.json --routes ./src/db/routes.json"
+        "preview": "vite preview"
     },
     "dependencies": {
         "@tanstack/react-query": "^5.90.5",

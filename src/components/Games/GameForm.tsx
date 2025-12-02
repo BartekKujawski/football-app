@@ -1,4 +1,5 @@
 import { type ChangeEvent, type FormEvent } from 'react';
+import styled from 'styled-components';
 import type { GamesDto } from '../../types';
 import { useGetInfoQuery } from '../../quieries/useGetInfoQuery';
 import {
@@ -9,6 +10,18 @@ import {
     StyledSelect,
 } from '../../helpers';
 import type { Team } from '../../types';
+
+const StyledLabel = styled.label`
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: ${(props) => props.theme.colors.textPrimary};
+
+    @media (max-width: 768px) {
+        font-size: 13px;
+        width: 100%;
+    }
+`;
 
 type GameFormProps = {
     handleSubmit: (e: FormEvent) => void;
@@ -42,7 +55,7 @@ export const GameForm = ({
     return (
         <StyledForm onSubmit={handleSubmit}>
             <StyledFormDiv>
-                <label htmlFor='date'>Date</label>
+                <StyledLabel htmlFor='date'>Date</StyledLabel>
                 <StyledInput
                     type='date'
                     id='date'
@@ -52,7 +65,7 @@ export const GameForm = ({
                 />
             </StyledFormDiv>
             <StyledFormDiv>
-                <label htmlFor='competition'>Competition</label>
+                <StyledLabel htmlFor='competition'>Competition</StyledLabel>
                 <StyledInput
                     type='text'
                     id='competition'
@@ -62,7 +75,7 @@ export const GameForm = ({
                 />
             </StyledFormDiv>
             <StyledFormDiv>
-                <label htmlFor='location'>Location</label>
+                <StyledLabel htmlFor='location'>Location</StyledLabel>
                 <StyledInput
                     type='text'
                     id='location'
@@ -72,7 +85,7 @@ export const GameForm = ({
                 />
             </StyledFormDiv>
             <StyledFormDiv>
-                <label htmlFor='length'>Length (minutes)</label>
+                <StyledLabel htmlFor='length'>Length (minutes)</StyledLabel>
                 <StyledInput
                     min={90}
                     type='number'
@@ -83,7 +96,7 @@ export const GameForm = ({
                 />
             </StyledFormDiv>
             <StyledFormDiv>
-                <label htmlFor='homeTeamId'>Home Team</label>
+                <StyledLabel htmlFor='homeTeamId'>Home Team</StyledLabel>
                 <StyledSelect
                     name='homeTeamId'
                     id='homeTeamId'
@@ -99,7 +112,7 @@ export const GameForm = ({
                 </StyledSelect>
             </StyledFormDiv>
             <StyledFormDiv>
-                <label htmlFor='awayTeamId'>Away Team</label>
+                <StyledLabel htmlFor='awayTeamId'>Away Team</StyledLabel>
                 <StyledSelect
                     name='awayTeamId'
                     id='awayTeamId'
@@ -117,7 +130,7 @@ export const GameForm = ({
                 </StyledSelect>
             </StyledFormDiv>
             <StyledFormDiv>
-                <label htmlFor='homeResult'>Home Result</label>
+                <StyledLabel htmlFor='homeResult'>Home Result</StyledLabel>
                 <StyledInput
                     type='number'
                     id='homeResult'
@@ -127,7 +140,7 @@ export const GameForm = ({
                 />
             </StyledFormDiv>
             <StyledFormDiv>
-                <label htmlFor='awayResult'>Away Result</label>
+                <StyledLabel htmlFor='awayResult'>Away Result</StyledLabel>
                 <StyledInput
                     type='number'
                     id='awayResult'

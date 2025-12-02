@@ -24,7 +24,7 @@ export const PlayersList = () => {
                         Name
                     </StyledH2>
                     <StyledP>Team</StyledP>
-                    <div></div>
+                    <div style={{ flexShrink: 0, minWidth: 'fit-content' }}></div>
                 </StyledHeaderLi>
                 {data?.map((el) => (
                     <SinglePlayer key={el.id} player={el} />

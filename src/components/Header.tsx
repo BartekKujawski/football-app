@@ -14,6 +14,14 @@ const StyledHeader = styled.header`
     justify-content: center;
     align-items: center;
     position: relative;
+    padding: 0 20px;
+
+    @media (max-width: 768px) {
+        height: auto;
+        min-height: 80px;
+        flex-direction: column;
+        padding: 10px;
+    }
 `;
 
 const StyledButton = styled.button`
@@ -27,9 +35,17 @@ const StyledButton = styled.button`
     cursor: pointer;
     background-color: ${(props) => props.theme.colors.textBackground};
     color: ${(props) => props.theme.colors.background};
+    font-size: 14px;
 
     &:hover {
         color: ${(props) => props.theme.colors.primary};
+    }
+
+    @media (max-width: 768px) {
+        position: static;
+        margin-top: 10px;
+        padding: 8px 15px;
+        font-size: 12px;
     }
 `;
 
@@ -38,6 +54,14 @@ const StyledNav = styled.nav`
     height: 100px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+
+    @media (max-width: 768px) {
+        height: auto;
+        width: 100%;
+        gap: 0;
+    }
 `;
 
 const StyledLink = styled.a`
@@ -49,6 +73,16 @@ const StyledLink = styled.a`
     &:hover {
         cursor: pointer;
         color: ${(props) => props.theme.colors.primary};
+    }
+
+    @media (max-width: 768px) {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 480px) {
+        padding: 6px 10px;
+        font-size: 12px;
     }
 `;
 
